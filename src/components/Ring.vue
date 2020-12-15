@@ -369,7 +369,7 @@ export default {
       }
       const { r0, x, y, r, generatePath } = this.useful;
       const {
-        axis: { d1, d2, d3 },
+        axis: { d1, d2 },
       } = this.config;
       const oldValue = this.oldDataset ? this.oldDataset[0][0] : min;
       const x1 = x(Math.PI / 4, d1 + d2 / 2);

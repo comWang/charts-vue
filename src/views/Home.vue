@@ -1,18 +1,20 @@
 <template>
-  <div>
+  <div class="container">
     <h1 class="header">Charts by d3</h1>
     <Area
       id="area"
       :width="500 * $ratio"
       :height="300 * $ratio"
       :dataset="area.dataset"
-      :option="area.option" />
+      :option="area.option"
+    />
     <Ring
       id="ring"
       :width="500 * $ratio"
       :height="420 * $ratio"
       :dataset="ring.dataset"
-      :option="ring.option" />
+      :option="ring.option"
+    />
   </div>
 </template>
 
@@ -62,11 +64,15 @@ export default {
               text: '室外空气质量',
             },
           },
-        }
+        },
       },
     };
   },
   mounted() {
+    setInterval(() => {
+      this.setAreaValue();
+      this.setRingValue();
+    }, 1000 * 3);
     this.setAreaValue();
     this.setRingValue();
   },
@@ -75,14 +81,19 @@ export default {
       this.area.dataset = createDataset(30, 50);
     },
     setRingValue() {
-      this.ring.dataset = [[30], [0, 100]];
+      this.ring.dataset = [[Math.round(Math.random() * 100)], [0, 100]];
     },
   },
 };
 </script>
 
 <style lang="less" scoped>
-  .header {
-    text-align: center;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  text-align: center;
+}
 </style>
